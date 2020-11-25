@@ -1,39 +1,122 @@
-# flutter_app
+# hellow_world
 
-#### 介绍
-{**以下是 Gitee 平台说明，您可以替换此简介**
-Gitee 是 OSCHINA 推出的基于 Git 的代码托管平台（同时支持 SVN）。专为开发者提供稳定、高效、安全的云端软件开发协作平台
-无论是个人、团队、或是企业，都能够用 Gitee 实现代码托管、项目管理、协作开发。企业项目请看 [https://gitee.com/enterprises](https://gitee.com/enterprises)}
+A new Flutter project.
 
-#### 软件架构
-软件架构说明
+## Getting Started
 
+This project is a starting point for a Flutter application.
 
-#### 安装教程
+A few resources to get you started if this is your first Flutter project:
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-#### 使用说明
+For help getting started with Flutter, view our
+[online documentation](https://flutter.dev/docs), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+## 运行配置
 
-#### 参与贡献
+> 1.将flutter文件夹下F:\QMDownload\flutter\packages\flutter_tools\gradle的flutter.gradle做如下修改
+>
+> 第一段：
 
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+```groovy
+buildscript {
+    repositories {
+        //修改此处
+        // google()
+        // jcenter()
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public' }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.5.0'
+    }
+}
+```
 
+> 第二段
 
-#### 特技
+```groovy
+class FlutterPlugin implements Plugin<Project> {
+    // private static final String DEFAULT_MAVEN_HOST = "https://storage.googleapis.com";
+    private static final String MAVEN_REPO = "https://storage.flutter-io.cn/download.flutter.io";//修改此处
 
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+    // The platforms that can be passed to the `--Ptarget-platform` flag.
+    private static final String PLATFORM_ARM32  = "android-arm";
+    private static final String PLATFORM_ARM64  = "android-arm64";
+    private static final String PLATFORM_X86    = "android-x86";
+    private static final String PLATFORM_X86_64 = "android-x64";
+
+    // The ABI architectures.
+    private static final String ARCH_ARM32      = "armeabi-v7a";
+    private static final String ARCH_ARM64      = "arm64-v8a";
+    private static final String ARCH_X86        = "x86";
+    private static final String ARCH_X86_64     = "x86_64";
+```
+
+> 第三段
+
+```groovy
+void addFlutterDependencies(buildType) {
+        String flutterBuildMode = buildModeFor(buildType)
+        if (!supportsBuildMode(flutterBuildMode)) {
+            return
+        }
+        String hostedRepository = System.env.FLUTTER_STORAGE_BASE_URL ?: DEFAULT_MAVEN_HOST
+        String repository = useLocalEngine()
+            ? project.property('local-engine-repo')
+            : "$hostedRepository/download.flutter.io"
+        project.rootProject.allprojects {
+            repositories {
+                maven {
+                    url repository
+                }
+                //修改此处
+                maven { url 'https://maven.aliyun.com/repository/google' }
+                maven { url 'https://maven.aliyun.com/repository/jcenter' }
+                maven { url 'http://maven.aliyun.com/nexus/content/groups/public' }
+            }
+        }
+```
+
+> 2.修改`Flutter`项目下的`android`下的`build.gradle`
+
+```groovy
+buildscript {
+    ext.kotlin_version = '1.3.50'
+    repositories {
+        //修改此处
+        // google()
+        // jcenter()
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public' }
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.5.0'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+allprojects {
+    repositories {
+        //修改此处
+        // google()
+        // jcenter()
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public' }
+    }
+}
+```
+
+> 修改后运行
+
+```dart
+flutter run
+```
+
