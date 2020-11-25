@@ -77,6 +77,7 @@ class RandomWordsState extends State<RandomWords> {
   }
 
   void _pushSaved() {
+    //添加路由
     Navigator.of(context).push(new MaterialPageRoute(builder: (context) {
       final tiles = _saved.map(
         (pair) {
