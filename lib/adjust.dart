@@ -6,6 +6,7 @@ class Adjust extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("发现"),
+        centerTitle: true,
       ),
       body: Center(
         child: Text("发现好物"),

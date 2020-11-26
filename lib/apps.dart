@@ -6,6 +6,7 @@ class Apps extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("分类"),
+        centerTitle: true,
       ),
       body: Center(
         child: Text("商品分类"),

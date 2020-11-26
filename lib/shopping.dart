@@ -6,6 +6,7 @@ class Shopping extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("购物车"),
+        centerTitle: true,
       ),
       body: Center(
         child: Text("我的购物车"),
