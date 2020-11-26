@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import './apps.dart';
-import './adjust.dart';
-import './person.dart';
-import './shopping.dart';
-import './homePage.dart';
+import 'apps/apps.dart';
+import 'adjust/adjust.dart';
+import 'person/person.dart';
+import 'shopping/shopping.dart';
+import 'homePage/homePage.dart';
 
 void main() => runApp(new MyApp());
 
