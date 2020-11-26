@@ -26,6 +26,7 @@ class RandomWordsState extends State<RandomWords> {
   final _suggestions = <WordPair>[];
   final _biggerFont = new TextStyle(fontSize: 18.0);
   final _saved = new Set<WordPair>();
+  int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -34,6 +35,54 @@ class RandomWordsState extends State<RandomWords> {
         actions: <Widget>[
           new IconButton(icon: new Icon(Icons.list), onPressed: _pushSaved),
         ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        items: [
+          BottomNavigationBarItem(
+            title: Text(
+              "首页",
+              // style: TextStyle(color: Colors.red),
+            ),
+            icon: Icon(Icons.home),
+          ),
+          BottomNavigationBarItem(
+            title: Text(
+              "分类",
+              // style: TextStyle(color: Colors.red),
+            ),
+            icon: Icon(Icons.apps),
+          ),
+          BottomNavigationBarItem(
+            title: Text(
+              "发现",
+              // style: TextStyle(color: Colors.red),
+            ),
+            icon: Icon(Icons.adjust),
+          ),
+          BottomNavigationBarItem(
+            title: Text(
+              "购物车",
+              // style: TextStyle(color: Colors.red),
+            ),
+            icon: Icon(Icons.shopping_cart),
+          ),
+          BottomNavigationBarItem(
+            title: Text(
+              "我的",
+              // style: TextStyle(color: Colors.red),
+            ),
+            icon: Icon(Icons.person),
+          ),
+        ],
+        currentIndex: _currentIndex,
+        showUnselectedLabels: true,
+        onTap: (context) {
+          setState(() {
+            _currentIndex = context;
+          });
+        },
+        selectedItemColor: Colors.blue,
       ),
       body: _buildSuggestions(),
     );
