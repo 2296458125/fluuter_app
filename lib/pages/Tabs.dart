@@ -54,7 +54,7 @@ class _TabsState extends State<Tabs> {
                 Expanded(
                     child: UserAccountsDrawerHeader(
                   accountName: Text("飞花逐蝶"),
-                  accountEmail: Text("dadi@itying.com"),
+                  accountEmail: Text("2357818482@qq.com"),
                   currentAccountPicture: CircleAvatar(
                     backgroundImage: NetworkImage(
                         "https://www.itying.com/images/flutter/3.png"),
